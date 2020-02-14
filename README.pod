@@ -1,82 +1,103 @@
-NAME
-    gencc - credit card numbers generator
+=pod
 
-VERSION
-    version 0.1
+=encoding UTF-8
 
-DESCRIPTION
-    A simple program to generate credit card numbers that pass the MOD 10
-    check (Luhn formula).
+=head1 NAME
 
-    Usefull for testing e-commerce sites during development.
+gencc - credit card numbers generator
 
-SYNOPSIS
-     gencc [-n COUNT] [--] [CARDS...]
+=head1 VERSION
 
-     COUNT:
-        How many? One by default.
+version 0.1
 
-     CARDS:
-        visa13          (VISA 13 digits)
-        visa16          (VISA 16 digits)
-        mastercard      (MasterCard)
-        amex            (American Express)
-        discover        (Discover)
-        diners          (Diners Club / Carte Blanche)
-        enroute         (enRoute)
-        jcb             (JCB)
-        voyager         (Voyager)
+=head1 DESCRIPTION
 
-        all             (all of the above)
+A simple program to generate credit card numbers that pass the
+MOD 10 check (Luhn formula).
 
-EXAMPLE
-    Generate one card of each type:
-        $ gencc all
+Usefull for testing e-commerce sites during development.
 
-        # DISCOVER
-        6011910682716059
-        # ENROUTE
-        214994042293874
-        # DINERS
-        36986690765720
-        # AMEX
-        346811970580034
-        # VISA13
-        4716561096006
-        # MASTERCARD
-        2240540381513861
-        # JCB
-        3576145242167923
-        # VISA16
-        4716674173945014
-        # VOYAGER
-        869982892481275
+=head1 SYNOPSIS
 
-    Don't forget to strip the comments in case of creating wordlists:
-        $ gencc C<args> | sed '/^#/d'
+ gencc [-n COUNT] [--] [CARDS...]
 
-    Generate 999 VISA (13 digits) cards, select unique ones, and save to
-    file:
-        $ gencc -n999 visa13 | sort -u > ccards.txt
+ COUNT:
+    How many? One by default.
 
-    Generate 9 VISA (16 digits) and 9 MasterCards:
-        $ gencc -n9 visa16 mastercard
+ CARDS:
+    visa13          (VISA 13 digits)
+    visa16          (VISA 16 digits)
+    mastercard      (MasterCard)
+    amex            (American Express)
+    discover        (Discover)
+    diners          (Diners Club / Carte Blanche)
+    enroute         (enRoute)
+    jcb             (JCB)
+    voyager         (Voyager)
 
-AUTHOR
-    Graham King, "<https://github.com/grahamking>"
+    all             (all of the above)
 
-    chinarulezzz, "<https://github.com/chinarulezzz>"
+=head1 EXAMPLE
 
-LICENSE AND COPYRIGHT
-    Copyright 2003-2012 Graham King
+=over 2
 
-    This program is free software; you can redistribute it and/or modify it
-    under the terms of the GNU General Public License as published by the
-    Free Software Foundation; either version 2 of the License, or (at your
-    option) any later version.
+=item Generate one card of each type:
 
-    This program is distributed in the hope that it will be useful, but
-    WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-    Public License for more details.
+  $ gencc all
+
+  # DISCOVER
+  6011910682716059
+  # ENROUTE
+  214994042293874
+  # DINERS
+  36986690765720
+  # AMEX
+  346811970580034
+  # VISA13
+  4716561096006
+  # MASTERCARD
+  2240540381513861
+  # JCB
+  3576145242167923
+  # VISA16
+  4716674173945014
+  # VOYAGER
+  869982892481275
+
+=item Don't forget to strip the comments in case of creating wordlists:
+
+  $ gencc C<args> | sed '/^#/d'
+
+=item Generate 999 VISA (13 digits) cards, select unique ones, and save to file:
+
+  $ gencc -n999 visa13 | sort -u > ccards.txt
+
+=item Generate 9 VISA (16 digits) and 9 MasterCards:
+
+  $ gencc -n9 visa16 mastercard
+
+=back
+
+=head1 AUTHOR
+
+Graham King, "<https://github.com/grahamking>"
+
+chinarulezzz, "<https://github.com/chinarulezzz>"
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2003-2012 Graham King
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+
+=cut
 
