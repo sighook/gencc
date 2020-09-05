@@ -1,14 +1,15 @@
 #!/usr/bin/perl
 
-my $PROGRAM = 'gencc';
-my $VERSION = '0.1';
-my $DESCR   = 'credit card numbers generator';
+use constant {
+    VERSION => "gencc v0.1\n",
+    USAGE   => "usage: $0 [-n COUNT] [--] CARDS...\n",
+};
 
 use strict;
 use warnings;
 use feature 'say';
-use Getopt::Std; $Getopt::Std::STANDARD_HELP_VERSION = 1;
-use Pod::Usage;
+
+use Getopt::Std;
 use POSIX;
 
 my %cards = (
@@ -114,13 +115,11 @@ sub credit_card_number {
 
 ###############################################################################
 
-sub VERSION_MESSAGE { say "$PROGRAM $VERSION - $DESCR" }
-sub HELP_MESSAGE    { pod2usage(-exitval => 0, -verbose => 2) }
+use vars qw($opt_h $opt_n $opt_v);
+getopts('hn:v');
 
-###############################################################################
-
-use vars qw($opt_n);
-getopts('n:');
+print USAGE   and exit if $opt_h;
+print VERSION and exit if $opt_v;
 
 @ARGV = keys %cards if @ARGV == 1 && uc $ARGV[0] eq 'ALL';
 
@@ -133,110 +132,6 @@ for my $arg (@ARGV) {
     say "# $card";
     say for credit_card_number($card, $digits, $opt_n || 1)->@*;
 }
-
-__END__
-
-=pod
-
-=encoding UTF-8
-
-=head1 NAME
-
-gencc - credit card numbers generator
-
-=head1 VERSION
-
-version 0.1
-
-=head1 DESCRIPTION
-
-A simple program to generate credit card numbers that pass the
-MOD 10 check (Luhn formula).
-
-Usefull for testing e-commerce sites during development.
-
-=head1 SYNOPSIS
-
- gencc [-n COUNT] [--] [CARDS...]
-
- COUNT:
-    How many? One by default.
-
- CARDS:
-    visa13          (VISA 13 digits)
-    visa16          (VISA 16 digits)
-    mastercard      (MasterCard)
-    amex            (American Express)
-    discover        (Discover)
-    diners          (Diners Club / Carte Blanche)
-    enroute         (enRoute)
-    jcb             (JCB)
-    voyager         (Voyager)
-
-    all             (all of the above)
-
-=head1 EXAMPLE
-
-=over 2
-
-=item Generate one card of each type:
-
-  $ gencc all
-
-  # DISCOVER
-  6011910682716059
-  # ENROUTE
-  214994042293874
-  # DINERS
-  36986690765720
-  # AMEX
-  346811970580034
-  # VISA13
-  4716561096006
-  # MASTERCARD
-  2240540381513861
-  # JCB
-  3576145242167923
-  # VISA16
-  4716674173945014
-  # VOYAGER
-  869982892481275
-
-=item Don't forget to strip the comments in case of creating wordlists:
-
-  $ gencc C<args> | sed '/^#/d'
-
-=item Generate 999 VISA (13 digits) cards, select unique ones, and save to file:
-
-  $ gencc -n999 visa13 | sort -u > ccards.txt
-
-=item Generate 9 VISA (16 digits) and 9 MasterCards:
-
-  $ gencc -n9 visa16 mastercard
-
-=back
-
-=head1 AUTHOR
-
-Graham King, "<https://github.com/grahamking>"
-
-chinarulezzz, "<https://github.com/chinarulezzz>"
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2003-2012 Graham King
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-=cut
 
 # vim:sw=4:ts=4:sts=4:et:cc=80
 # End of file
