@@ -19,7 +19,7 @@ Usefull for testing e-commerce sites during development.
 
 =head1 SYNOPSIS
 
- gencc [-n COUNT] [--] [CARDS...]
+ gencc [-n COUNT] [--] CARDS...
 
  COUNT:
     How many? One by default.
@@ -100,4 +100,3 @@ GNU General Public License for more details.
 
 
 =cut
-
