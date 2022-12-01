@@ -1,18 +1,21 @@
+# gencc version
+VERSION = 0.1.1
+
 PREFIX = /usr/local
-MANPREFIX= $(PREFIX)/share/man
+MANPREFIX= ${PREFIX}/share/man
 
 all: man
 
 man:
-	pod2man -n gencc -r 0.1 -c "User Commands" README.pod gencc.1
+	pod2man -n gencc -r${VERSION} -c' ' README.pod gencc.1
 
 install: all
-	install -Dm755 gencc   -t $(DESTDIR)$(PREFIX)/bin
-	install -Dm755 gencc.1 -t $(DESTDIR)$(MANPREFIX)/man1
+	install -m 0755 -Dt ${DESTDIR}${PREFIX}/bin/     gencc
+	install -m 0644 -Dt ${DESTDIR}${MANPREFIX}/man1/ gencc.1
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/gencc
-	rm -f $(DESTDIR)$(MANPREFIX)/man1/gencc.1
+	rm -f ${DESTDIR}${PREFIX}/bin/gencc
+	rm -f ${DESTDIR}${MANPREFIX}/man1/gencc.1
 
 clean:
 	rm gencc.1
