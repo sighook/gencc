@@ -6,10 +6,6 @@
 
 gencc - credit card numbers generator
 
-=head1 VERSION
-
-version 0.1
-
 =head1 DESCRIPTION
 
 A simple program to generate credit card numbers that pass the
