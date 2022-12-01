@@ -80,9 +80,13 @@ Usefull for testing e-commerce sites during development.
 
 =head1 AUTHOR
 
-Graham King, "<https://github.com/grahamking>"
+=over
 
-chinarulezzz, "<https://github.com/chinarulezzz>"
+=item Graham King, <https://github.com/grahamking>
+
+=item Alexandr Savca, <https://github.com/sighook>
+
+=back
 
 =head1 LICENSE AND COPYRIGHT
 
